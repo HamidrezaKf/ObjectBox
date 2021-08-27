@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.hamidreza.objectbox.ui.users.UsersFragment"
+        android:label="fragment_users"
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.hamidreza.objectbox.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="user"
+            app:argType="com.hamidreza.objectbox.db.models.User"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_detailFragment_to_relationItemsFragment"
+            app:destination="@id/relationItemsFragment"
+            app:popUpTo="@id/usersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relationItemsFragment"
+        android:name="com.hamidreza.objectbox.ui.relations.RelationItemsFragment"
+        android:label="relation_items_fragment"
+        tools:layout="@layout/relation_items_fragment" >
+        <argument
+            android:name="type"
+            app:argType="integer" />
+        <argument
+            android:name="user"
+            app:argType="com.hamidreza.objectbox.db.models.User" />
+    </fragment>
+</navigation>
